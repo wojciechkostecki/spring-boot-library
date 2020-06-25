@@ -28,4 +28,11 @@ public class BookService {
         return bookRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Couldn't find a book with id: %s", id)));
     }
+
+    public Book updateBook(Long id, Book book) {
+        if(!id.equals(book.getId())){
+            throw new IllegalArgumentException(String.format("Path id %s not matching body id %s", id, book.getId()));
+        }
+        return save(book);
+    }
 }
