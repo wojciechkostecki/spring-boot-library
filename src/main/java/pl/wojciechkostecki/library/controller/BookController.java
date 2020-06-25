@@ -28,4 +28,10 @@ public class BookController {
     public ResponseEntity<List<Book>> getAllBooks(){
         return ResponseEntity.ok(bookService.getAll());
     }
+
+    @GetMapping
+    @RequestMapping("/{id}")
+    public ResponseEntity<Book> getBook(@PathVariable Long id){
+        return ResponseEntity.ok(bookService.findById(id));
+    }
 }
