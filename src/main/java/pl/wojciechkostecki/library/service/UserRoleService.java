@@ -1,6 +1,7 @@
 package pl.wojciechkostecki.library.service;
 
 import org.springframework.stereotype.Service;
+import pl.wojciechkostecki.library.model.Role;
 import pl.wojciechkostecki.library.model.UserRole;
 import pl.wojciechkostecki.library.repository.UserRoleRepository;
 
@@ -14,5 +15,9 @@ public class UserRoleService {
 
     public UserRole save(UserRole userRole) {
         return userRoleRepository.save(userRole);
+    }
+
+    public UserRole findByName(Role name){
+        return userRoleRepository.findByName(name);
     }
 }

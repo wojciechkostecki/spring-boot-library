@@ -1,9 +1,8 @@
 package pl.wojciechkostecki.library.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -14,6 +13,12 @@ public class User {
     private String username;
 
     private String password;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_role_id"))
+    private Set<UserRole> roles = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -39,6 +44,14 @@ public class User {
         this.password = password;
     }
 
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -47,4 +60,5 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

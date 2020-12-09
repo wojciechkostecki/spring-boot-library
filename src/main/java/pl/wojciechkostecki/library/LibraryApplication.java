@@ -41,6 +41,7 @@ public class LibraryApplication {
         User user = new User();
         user.setUsername("admin");
         user.setPassword("admin");
+        user.getRoles().add(userRoleService.findByName(Role.ADMIN));
         userService.registerUser(user);
     }
 
